@@ -25,6 +25,7 @@
 @property (nonatomic) CGRect imageCropRect;
 
 @property (nonatomic) CGFloat rotationAngle;
+@property (nonatomic) CGSize dashInsets;
 
 @property (nonatomic, weak, readonly) UIRotationGestureRecognizer *rotationGestureRecognizer;
 
@@ -32,5 +33,7 @@
 - (void)resetCropRectAnimated:(BOOL)animated;
 
 - (void)setRotationAngle:(CGFloat)rotationAngle snap:(BOOL)snap;
+
+
 
 @end

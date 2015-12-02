@@ -33,6 +33,8 @@ static const CGFloat MarginLeft = 20.0f;
 @property (nonatomic, getter = isResizing) BOOL resizing;
 @property (nonatomic) UIInterfaceOrientation interfaceOrientation;
 
+
+
 @end
 
 @implementation PECropView
@@ -98,6 +100,8 @@ static const CGFloat MarginLeft = 20.0f;
     self.bottomOverlayView = [[UIView alloc] init];
     self.bottomOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
     [self addSubview:self.bottomOverlayView];
+
+    self.dashInsets = CGSizeMake(MarginLeft, MarginTop);
 }
 
 #pragma mark -
@@ -131,16 +135,16 @@ static const CGFloat MarginLeft = 20.0f;
     
     UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
     if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-        self.editingRect = CGRectInset(self.bounds, MarginLeft, MarginTop);
+        self.editingRect = CGRectInset(self.bounds, self.dashInsets.width, self.dashInsets.height);
     } else {
-        self.editingRect = CGRectInset(self.bounds, MarginLeft, MarginLeft);
+        self.editingRect = CGRectInset(self.bounds, self.dashInsets.width, self.dashInsets.width);
     }
     
     if (!self.imageView) {
         if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-            self.insetRect = CGRectInset(self.bounds, MarginLeft, MarginTop);
+            self.insetRect = CGRectInset(self.bounds, self.dashInsets.width, self.dashInsets.height);
         } else {
-            self.insetRect = CGRectInset(self.bounds, MarginLeft, MarginLeft);
+            self.insetRect = CGRectInset(self.bounds, self.dashInsets.width, self.dashInsets.width);
         }
         
         [self setupImageView];
